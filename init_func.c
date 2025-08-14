@@ -6,12 +6,13 @@
 /*   By: yatanagh <yatanagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 21:54:03 by yatanagh          #+#    #+#             */
-/*   Updated: 2025/08/13 21:22:42 by yatanagh         ###   ########.fr       */
+/*   Updated: 2025/08/14 04:16:24 by yatanagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-static bool init_dinner_params(t_dinner_params *params, char **args)
+
+static bool	init_dinner_params(t_dinner_params *params, char **args)
 {
 	memset(params, 0, sizeof(t_dinner_params));
 	params->num_of_philosophers = ft_atoi(args[1]);
@@ -28,10 +29,7 @@ static bool init_dinner_params(t_dinner_params *params, char **args)
 	if (pthread_mutex_init(&params->death_mtx, NULL))
 		return (false);
 	if (pthread_mutex_init(&params->display_mtx, NULL))
-	{
-		pthread_mutex_destroy(&params->death_mtx);
-		return (false);
-	}
+		return (pthread_mutex_destroy(&params->death_mtx), false);
 	if (pthread_mutex_init(&params->meal_count_mtx, NULL))
 	{
 		pthread_mutex_destroy(&params->death_mtx);
@@ -41,12 +39,29 @@ static bool init_dinner_params(t_dinner_params *params, char **args)
 	return (true);
 }
 
-static bool init_philosophers(t_dinner_params *params, t_philosopher *philos)
+static void	init_philo(t_dinner_params *params, t_philosopher *philos)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	params->utensils = malloc(sizeof(pthread_mutex_t) * params->num_of_philosophers);
+	while (i < params->num_of_philosophers)
+	{
+		philos[i].philosopher_id = i + 1;
+		philos[i].meals_consumed = 0;
+		philos[i].left_utensil = i;
+		philos[i].right_utensil = (i + 1) % params->num_of_philosophers;
+		philos[i].shared_data = params;
+		i++;
+	}
+}
+
+static bool	init_philosophers(t_dinner_params *params, t_philosopher *philos)
+{
+	int	i;
+
+	i = 0;
+	params->utensils = malloc(sizeof(pthread_mutex_t)
+			* params->num_of_philosophers);
 	if (!params->utensils)
 		return (false);
 	while (i < params->num_of_philosophers)
@@ -60,24 +75,17 @@ static bool init_philosophers(t_dinner_params *params, t_philosopher *philos)
 		}
 		i++;
 	}
-	i = 0;
-	while (i < params->num_of_philosophers)
-	{
-		philos[i].philosopher_id = i + 1;
-		philos[i].meals_consumed = 0;
-		philos[i].left_utensil = i;
-		philos[i].right_utensil = (i + 1) % params->num_of_philosophers;
-		philos[i].shared_data = params;
-		i++;
-	}
+	init_philo(params, philos);
 	return (true);
 }
 
-bool    initialize_all_data(t_dinner_params *params, t_philosopher **philos, char **args)
+bool	initialize_all_data(t_dinner_params *params,
+		t_philosopher **philos, char **args)
 {
 	if (!init_dinner_params(params, args))
 		return (false);
-	*philos = (t_philosopher *)malloc(sizeof(t_philosopher) * params->num_of_philosophers);
+	*philos = (t_philosopher *)malloc(sizeof(t_philosopher)
+			* params->num_of_philosophers);
 	if (!*philos)
 	{
 		pthread_mutex_destroy(&params->death_mtx);

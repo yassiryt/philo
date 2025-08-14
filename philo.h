@@ -6,7 +6,7 @@
 /*   By: yatanagh <yatanagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 21:54:32 by yatanagh          #+#    #+#             */
-/*   Updated: 2025/08/13 21:01:34 by yatanagh         ###   ########.fr       */
+/*   Updated: 2025/08/14 04:28:10 by yatanagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ typedef struct s_dinner_params
 
 typedef struct s_philosopher
 {
-	int			philosopher_id;
-	int			meals_consumed;
-	time_t		last_meal_timestamp;
-	int			left_utensil;
-	int			right_utensil;
+	int				philosopher_id;
+	int				meals_consumed;
+	time_t			last_meal_timestamp;
+	int				left_utensil;
+	int				right_utensil;
 	t_dinner_params	*shared_data;
 }	t_philosopher;
 
@@ -63,7 +63,8 @@ void	log_sleeping(t_philosopher *philo, int id);
 void	log_thinking(t_philosopher *philo, int id);
 void	log_death(t_philosopher *philo, int id);
 void	display_error_msg(char *message);
-bool	initialize_all_data(t_dinner_params *params, t_philosopher **philos, char **args);
+bool	initialize_all_data(t_dinner_params *params,
+			t_philosopher **philos, char **args);
 void	monitor_dinner(t_philosopher *philos);
 bool	validate_arguments(int count, char **args);
 bool	validate_values(char **args);
@@ -75,6 +76,7 @@ time_t	get_time_ms(void);
 bool	is_dinner_ongoing(t_philosopher *philo);
 void	ft_ms_sleep(time_t milliseconds, t_philosopher *philo);
 void	destroy_all_mutexes(t_dinner_params *params);
-void	cleanup_resources(t_dinner_params *params, t_philosopher **philos, pthread_t **threads);
+void	cleanup_resources(t_dinner_params *params, t_philosopher **philos,
+			pthread_t **threads);
 
 #endif

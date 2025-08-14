@@ -6,7 +6,7 @@
 /*   By: yatanagh <yatanagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:54:18 by yatanagh          #+#    #+#             */
-/*   Updated: 2025/08/13 21:04:32 by yatanagh         ###   ########.fr       */
+/*   Updated: 2025/08/14 04:26:17 by yatanagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static bool	check_for_death(t_philosopher *philos, t_dinner_params *params)
 	while (i < params->num_of_philosophers)
 	{
 		pthread_mutex_lock(&params->meal_count_mtx);
-		if (((get_elapsed_time(params->start_of_dinner) - philos[i].last_meal_timestamp)
+		if (((get_elapsed_time(params->start_of_dinner)
+					- philos[i].last_meal_timestamp)
 				> params->time_to_expire))
 		{
 			pthread_mutex_unlock(&params->meal_count_mtx);

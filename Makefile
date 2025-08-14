@@ -1,13 +1,13 @@
 SRC =	basic_func.c\
-		display_func.c\
-		errors_func.c\
+		log_func.c\
+		err_func.c\
 		init_func.c\
 		monitor_func.c\
-		parssing_func.c\
+		parcing_func.c\
 		routine_func.c\
 		thread_func.c\
 		time_func.c\
-		used_func.c\
+		rand_func.c\
 		main.c
 
 OBJS = $(SRC:.c=.o)

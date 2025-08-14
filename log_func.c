@@ -6,7 +6,7 @@
 /*   By: yatanagh <yatanagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 21:53:49 by yatanagh          #+#    #+#             */
-/*   Updated: 2025/08/13 21:00:40 by yatanagh         ###   ########.fr       */
+/*   Updated: 2025/08/14 04:33:41 by yatanagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	log_utensil_pickup(t_philosopher *philo, int id)
 		pthread_mutex_unlock(&philo->shared_data->display_mtx);
 		return ;
 	}
-	printf("\033[36m%ld %d has taken a utensil\033[0m\n", timestamp, id);
+	printf("\033[36m%ld %d has taken a fork\033[0m\n", timestamp, id);
 	pthread_mutex_unlock(&philo->shared_data->display_mtx);
 }
 

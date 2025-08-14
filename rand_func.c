@@ -6,7 +6,7 @@
 /*   By: yatanagh <yatanagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 21:54:58 by yatanagh          #+#    #+#             */
-/*   Updated: 2025/08/13 21:03:52 by yatanagh         ###   ########.fr       */
+/*   Updated: 2025/08/14 04:30:03 by yatanagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_ms_sleep(time_t ms, t_philosopher *p)
 
 void	destroy_all_mutexes(t_dinner_params *d)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	pthread_mutex_destroy(&d->death_mtx);
