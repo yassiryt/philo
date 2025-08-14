@@ -1,25 +1,41 @@
+SRC =	basic_func.c\
+		display_func.c\
+		errors_func.c\
+		init_func.c\
+		monitor_func.c\
+		parssing_func.c\
+		routine_func.c\
+		thread_func.c\
+		time_func.c\
+		used_func.c\
+		main.c
+
+OBJS = $(SRC:.c=.o)
+
 NAME = philo
 
-SRCS = philo.c init.c routine.c monitor.c utils.c
-OBJS = $(SRCS:.c=.o)
+CC = cc
 
-CC = CC
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror
+
+RM = rm -rf
+
+HEADERS = philo.h
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-		$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
+		$(CC) $(CFLAGS) $^ -o $@
 
-%.o: %.c philo.h
-		$(CC) $(OBJS) -c $< -o $@
+%.o: %.c $(HEADERS)
+		$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-		rm -f $(OBJS)
+	$(RM) $(OBJS)
 
 fclean: clean
-		rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: clean fclean re all
