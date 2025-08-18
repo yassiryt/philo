@@ -6,7 +6,7 @@
 /*   By: yatanagh <yatanagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 21:54:32 by yatanagh          #+#    #+#             */
-/*   Updated: 2025/08/14 04:28:10 by yatanagh         ###   ########.fr       */
+/*   Updated: 2025/08/15 04:07:47 by yatanagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_dinner_params
 	pthread_mutex_t	display_mtx;
 	pthread_mutex_t	death_mtx;
 	pthread_mutex_t	meal_count_mtx;
-	pthread_mutex_t	*utensils;
+	pthread_mutex_t	*forks;
 }	t_dinner_params;
 
 typedef struct s_philosopher
@@ -47,8 +47,8 @@ typedef struct s_philosopher
 	int				philosopher_id;
 	int				meals_consumed;
 	time_t			last_meal_timestamp;
-	int				left_utensil;
-	int				right_utensil;
+	int				left_fork;
+	int				right_fork;
 	t_dinner_params	*shared_data;
 }	t_philosopher;
 
@@ -57,7 +57,7 @@ int		is_digit(int c);
 int		is_space(int c);
 int		ft_atoi(char *str);
 void	ft_putstr_fd(int fd, char *str);
-void	log_utensil_pickup(t_philosopher *philo, int id);
+void	log_fork_pickup(t_philosopher *philo, int id);
 void	log_eating(t_philosopher *philo, int id);
 void	log_sleeping(t_philosopher *philo, int id);
 void	log_thinking(t_philosopher *philo, int id);

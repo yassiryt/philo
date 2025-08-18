@@ -6,7 +6,7 @@
 /*   By: yatanagh <yatanagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 21:54:03 by yatanagh          #+#    #+#             */
-/*   Updated: 2025/08/14 04:16:24 by yatanagh         ###   ########.fr       */
+/*   Updated: 2025/08/15 04:07:47 by yatanagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void	init_philo(t_dinner_params *params, t_philosopher *philos)
 	{
 		philos[i].philosopher_id = i + 1;
 		philos[i].meals_consumed = 0;
-		philos[i].left_utensil = i;
-		philos[i].right_utensil = (i + 1) % params->num_of_philosophers;
+		philos[i].left_fork = i;
+		philos[i].right_fork = (i + 1) % params->num_of_philosophers;
 		philos[i].shared_data = params;
 		i++;
 	}
@@ -60,17 +60,17 @@ static bool	init_philosophers(t_dinner_params *params, t_philosopher *philos)
 	int	i;
 
 	i = 0;
-	params->utensils = malloc(sizeof(pthread_mutex_t)
+	params->forks = malloc(sizeof(pthread_mutex_t)
 			* params->num_of_philosophers);
-	if (!params->utensils)
+	if (!params->forks)
 		return (false);
 	while (i < params->num_of_philosophers)
 	{
-		if (pthread_mutex_init(&params->utensils[i], NULL))
+		if (pthread_mutex_init(&params->forks[i], NULL))
 		{
 			while (--i >= 0)
-				pthread_mutex_destroy(&params->utensils[i]);
-			free(params->utensils);
+				pthread_mutex_destroy(&params->forks[i]);
+			free(params->forks);
 			return (false);
 		}
 		i++;

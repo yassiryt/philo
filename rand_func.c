@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   used_func.c                                        :+:      :+:    :+:   */
+/*   rand_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yatanagh <yatanagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 21:54:58 by yatanagh          #+#    #+#             */
-/*   Updated: 2025/08/14 04:30:03 by yatanagh         ###   ########.fr       */
+/*   Updated: 2025/08/15 04:07:47 by yatanagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	destroy_all_mutexes(t_dinner_params *d)
 	pthread_mutex_destroy(&d->meal_count_mtx);
 	while (i < d->num_of_philosophers)
 	{
-		pthread_mutex_destroy(&d->utensils[i]);
+		pthread_mutex_destroy(&d->forks[i]);
 		i++;
 	}
-	free(d->utensils);
+	free(d->forks);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_func.c                                     :+:      :+:    :+:   */
+/*   log_func.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yatanagh <yatanagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 21:53:49 by yatanagh          #+#    #+#             */
-/*   Updated: 2025/08/14 04:33:41 by yatanagh         ###   ########.fr       */
+/*   Updated: 2025/08/15 04:07:47 by yatanagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	log_utensil_pickup(t_philosopher *philo, int id)
+void	log_fork_pickup(t_philosopher *philo, int id)
 {
 	time_t	timestamp;
 
